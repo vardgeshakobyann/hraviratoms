@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Մկրտության հրավիրատոմս</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Noto+Sans+Armenian:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="hero" id="top">
+        <div class="hero__overlay"></div>
+        <div class="hero__content">
+            <div class="chevron" id="scrollDown" aria-label="Ներքև սքրոլ"></div>
+            <p class="intro">Սիրելի հարազատներ և ընկերներ,</p>
+            <p class="intro-sub">ժամկալում ենք ձեզ մեզ հետ կիսել մեր փոքրիկ լուսավոր օրը</p>
+            <h1 class="script">Սահանուշի, Լյուդմիլայի, Իլոնայի և Գաբիի</h1>
+            <p class="subtitle">սրբազան մկրտության արարողությանը</p>
+            <p class="date script">19 Նոյեմբեր 2025</p>
+            <p class="cta">Սպասում ենք ձեզ</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Countdown -->
+        <section class="card countdown" id="countdown">
+            <h2 class="section-title">Մինչ հանդիպումը</h2>
+            <div class="cd-grid" aria-live="polite">
+                <div class="cd-box"><span id="cd-days" class="cd-num">0</span><span class="cd-label">օր</span></div>
+                <div class="cd-box"><span id="cd-hours" class="cd-num">0</span><span class="cd-label">ժամ</span></div>
+                <div class="cd-box"><span id="cd-mins" class="cd-num">0</span><span class="cd-label">րոպե</span></div>
+                <div class="cd-box"><span id="cd-secs" class="cd-num">0</span><span class="cd-label">վ</span></div>
+            </div>
+            <p id="cd-note" class="cd-note"></p>
+        </section>
+        <!-- Program / timeline -->
+        <section class="card timeline" id="program">
+            <h2 class="section-title">Սպասում ենք ձեզ</h2>
+            <div class="row">
+                <div class="time">15:00</div>
+                <div class="icon">
+                    <!-- church -->
+                    <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 10l8 6v4h6v10h6v18h-8V36H20v12h-8V30h6V20h6v-4l8-6z" fill="#cdb57a"/></svg>
+                </div>
+                <div class="details">
+                    <h3>Մկրտություն</h3>
+                    <p>Սուրբ Գրիգոր Լուսավորիչ Եկեղեցի</p>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="row">
+                <div class="time">17:00</div>
+                <div class="icon">
+                    <!-- glasses -->
+                    <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M20 18l6 10c2 3-1 6-4 6-3 0-6-3-4-6l6-10zm22 0l6 10c2 3-1 6-4 6-3 0-6-3-4-6l6-10zM14 38h12v8H14zM38 38h12v8H38z" fill="#cdb57a"/></svg>
+                </div>
+                <div class="details">
+                    <h3>Խնջույք</h3>
+                    <p>«Շեն Օջախ» հանդիսությունների սրահ</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Church section -->
+        <section class="card place" id="church">
+            <h2 class="section-title">Սուրբ Գրիգոր Լուսավորիչ Եկեղեցի</h2>
+            <figure class="media">
+                <img src="images/img2.jpg" alt="Եկեղեցու լուսանկար">
+            </figure>
+            <p class="address">Հասցե՝ Արագածոտնի մարզ, գյուղ Արուճ</p>
+            <div class="actions">
+                <a class="btn map-btn" href="#" data-address="Սուրբ Գրիգոր Լուսավորիչ Եկեղեցի, Արուճ">Ինչպես հասնել</a>
+            </div>
+        </section>
+
+        <!-- Hall section -->
+        <section class="card place" id="hall">
+            <h2 class="section-title">Շեն Օջախ</h2>
+            <figure class="media">
+                <img src="./images/img3.jpg" alt="Սրահի լուսանկար">
+            </figure>
+            <p class="address">Հասցե՝ Արագածոտնի մարզ, գյուղ Ագարակ</p>
+            <div class="actions">
+                <a class="btn map-btn" href="#" data-address="Շեն Օջախ, Ագարակ">Ինչպես հասնել</a>
+            </div>
+        </section>
+
+        
+    </main>
+
+    <footer class="footer">
+        <p>Սիրով՝ Հովհաննիսյաններ</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+

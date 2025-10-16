@@ -1,0 +1,114 @@
+/* Armenian-styled Baptism Invitation - Responsive UI */
+
+:root{
+  --bg:#f9f8f6;
+  --text:#111318;
+  --muted:#4c5566;
+  --gold:#cdb57a; /* warm gold like screenshots */
+  --card:#ffffff;
+  --ring:rgba(205,181,122,.35);
+  --shadow:0 12px 30px rgba(0,0,0,.08);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:"Noto Sans Armenian", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  color:var(--text);
+  /* Soft pastel gradient + subtle cross pattern for baptism */
+  background-image:
+    radial-gradient(1200px 800px at 80% -10%, rgba(217,230,255,.6), transparent 60%),
+    radial-gradient(900px 600px at -10% 30%, rgba(255,225,235,.6), transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%23cdb57a' stroke-opacity='0.18' stroke-width='2'%3E%3Cpath d='M32 10v44M11 32h42'/%3E%3C/g%3E%3C/svg%3E");
+  background-color: var(--bg);
+  background-repeat: no-repeat, no-repeat, repeat;
+  background-size: auto, auto, 64px 64px;
+  background-attachment: fixed, fixed, fixed;
+  line-height:1.65;
+}
+
+/* Floating buttons */
+.fab{position:fixed; right:16px; top:16px; display:flex; gap:10px; z-index:40}
+.pill{appearance:none; border:1px solid #eee; background:#fff; color:#111; padding:10px 14px; border-radius:999px; cursor:pointer; font-weight:700; box-shadow:0 6px 16px rgba(0,0,0,.08)}
+.pill:hover{transform:translateY(-1px)}
+.pill:focus{outline:none; box-shadow:0 0 0 4px var(--ring)}
+.pill-primary{background:var(--gold); color:#fff; border-color:transparent}
+
+/* Hero */
+.hero{position:relative; height: min(72vh, 720px); background:url('images/img1.jpg') center/cover no-repeat}
+.hero__overlay{position:absolute; inset:0; background:linear-gradient(180deg, rgba(20,24,38,.5), rgba(20,24,38,.15) 40%, rgba(20,24,38,.6))}
+.hero__content{position:relative; z-index:1; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; color:#fff; padding:16px}
+
+.chevron{width:36px; height:36px; border-bottom:3px solid var(--gold); border-right:3px solid var(--gold); transform:rotate(45deg); margin-bottom:18px; opacity:.9}
+
+.intro{margin:0 0 6px; font-weight:600}
+.intro-sub{margin:0 0 16px; opacity:.9}
+.script{font-family:"Cormorant Garamond", Georgia, serif; color:var(--gold)}
+.hero .script{font-size: clamp(40px, 5vw, 20px); font-weight:700}
+.subtitle{margin:6px 0 0; letter-spacing:.5px}
+.date{font-size: clamp(22px, 6vw, 44px); margin:14px 0}
+.cta{font-size: clamp(18px, 3.8vw, 24px); font-weight:800}
+
+/* Subtle dove/cross watermark */
+.hero::after{
+  content:"";
+  position:absolute; inset:0; pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Cpath fill='%23ffffff' fill-opacity='0.08' d='M64 10l10 12h14v14l12 10-12 10v14H74L64 92 54 80H40V66L28 56l12-10V32h14L64 10z'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:center; background-size:220px 220px;
+}
+
+/* Layout */
+.container{width:100%; max-width:1100px; margin:24px auto; padding:0 16px 60px; display:grid; grid-template-columns:1fr; gap:24px}
+@media(min-width:900px){.container{grid-template-columns:1fr}}
+
+.card{background:var(--card); border-radius:16px; overflow:hidden; border:1px solid rgba(17,19,24,.08); box-shadow:var(--shadow)}
+.section-title{font-family:"Cormorant Garamond", Georgia, serif; font-size:26px; margin:18px 18px 6px}
+
+/* Timeline */
+.timeline{padding:10px 14px 18px}
+.timeline .row{display:grid; grid-template-columns:72px 56px 1fr; align-items:center; gap:12px; padding:12px 6px}
+.timeline .time{font-weight:900; font-size:22px}
+.timeline .icon svg{width:40px; height:40px}
+.timeline .details h3{margin:0 0 4px; font-size:22px}
+.timeline .details p{margin:0; color:var(--muted)}
+.divider{height:52px; width:2px; background:linear-gradient(180deg, var(--gold), transparent); margin:0 auto}
+
+/* Places */
+.place{padding:8px 12px 22px}
+.media{margin:8px 0 10px}
+.media img{width:100%; height:clamp(220px, 45vw, 420px); object-fit:cover; border-radius:12px}
+.address{margin:8px 0 10px; text-align:center; color:var(--muted)}
+.actions{display:flex; justify-content:center; padding-bottom:6px}
+.btn{appearance:none; border:2px solid #111; background:transparent; color:#111; padding:12px 18px; border-radius:999px; font-weight:800; text-decoration:none; cursor:pointer}
+.btn:hover{background:#111; color:#fff}
+
+/* RSVP */
+.rsvp{padding:10px 16px 22px}
+.field{margin:10px 0}
+.field label{display:block; font-weight:700; margin:0 0 6px}
+.field input,.field select{width:100%; padding:12px 12px; border-radius:12px; border:1px solid rgba(17,19,24,.18); background:transparent; color:var(--text)}
+.field input:focus,.field select:focus{outline:none; box-shadow:0 0 0 4px var(--ring); border-color:var(--gold)}
+.error{color:#c0392b; font-size:12px; height:16px; display:block; margin-top:4px}
+.form-actions{display:flex; align-items:center; gap:12px}
+.status{color:var(--muted); font-size:14px}
+
+.footer{text-align:center; color:var(--muted); margin:6px 0 28px}
+
+/* Countdown */
+.countdown{padding:12px 16px 20px}
+.cd-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; padding:8px 6px}
+.cd-box{display:flex; flex-direction:column; align-items:center; justify-content:center; background:linear-gradient(180deg, rgba(205,181,122,.15), transparent 60%); border:1px solid rgba(205,181,122,.35); border-radius:14px; padding:10px 8px}
+.cd-num{font-family:"Cormorant Garamond", Georgia, serif; font-size:clamp(22px,6vw,36px); color:var(--gold); font-weight:700; line-height:1}
+.cd-label{font-size:12px; color:var(--muted)}
+.cd-note{text-align:center; color:var(--muted); margin:6px 0 0}
+
+/* Print */
+@media print{
+  body{background:#fff}
+  .fab{display:none}
+  .container{max-width:720px}
+  .btn{display:none}
+}
+
+
