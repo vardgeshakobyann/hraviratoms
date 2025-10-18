@@ -16,10 +16,11 @@ function initBackgroundMusic() {
       backgroundMusic.volume = 0.5;
       backgroundMusic.currentTime = 48;
       backgroundMusic.muted = false;
+      backgroundMusic.autoplay = true;
       await backgroundMusic.play();
       isMusicPlaying = true;
     } catch (error) {
-      isMusicPlaying = false;
+      isMusicPlaying = true;
     }
   };
   

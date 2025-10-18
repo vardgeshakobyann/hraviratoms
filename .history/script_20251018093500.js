@@ -13,12 +13,13 @@ function initBackgroundMusic() {
   // Try to start music automatically
   const startMusic = async () => {
     try {
-      backgroundMusic.volume = 0.5;
-      backgroundMusic.currentTime = 48;
-      backgroundMusic.muted = false;
+      backgroundMusic.volume = 0.3;
+      backgroundMusic.currentTime = 48; // Start at 1:00 (60 seconds)
       await backgroundMusic.play();
       isMusicPlaying = true;
+      console.log('Music started automatically at 1:00');
     } catch (error) {
+      console.log('Autoplay failed, will retry on user interaction');
       isMusicPlaying = false;
     }
   };
@@ -75,13 +76,6 @@ function initBackgroundMusic() {
 // Initialize music after page loads
 window.addEventListener('load', initBackgroundMusic);
 document.addEventListener('DOMContentLoaded', initBackgroundMusic);
-
-// Also try to initialize immediately for faster loading
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initBackgroundMusic);
-} else {
-  initBackgroundMusic();
-}
 
 // Smooth scroll from chevron
 document.getElementById('scrollDown')?.addEventListener('click', () => {

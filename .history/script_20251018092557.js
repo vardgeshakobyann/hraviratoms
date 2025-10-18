@@ -8,80 +8,81 @@ function initBackgroundMusic() {
   backgroundMusic.src = 'audio/audio1.mp3';
   backgroundMusic.loop = true;
   backgroundMusic.volume = 0.3; // 30% volume
-  backgroundMusic.preload = 'auto';
+  
+  // Create music control button
+  const musicButton = document.createElement('button');
+  musicButton.id = 'musicToggle';
+  musicButton.innerHTML = '🔊';
+  musicButton.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+  `;
+  
+  document.body.appendChild(musicButton);
   
   // Try to start music automatically
   const startMusic = async () => {
     try {
-      backgroundMusic.volume = 0.5;
-      backgroundMusic.currentTime = 48;
-      backgroundMusic.muted = false;
       await backgroundMusic.play();
+      musicButton.innerHTML = '🔊';
+      musicButton.style.opacity = '1';
       isMusicPlaying = true;
     } catch (error) {
+      console.log('Autoplay failed, user interaction required');
+      musicButton.innerHTML = '🎵';
+      musicButton.style.opacity = '0.5';
       isMusicPlaying = false;
     }
   };
   
-  // Handle page visibility changes
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden && isMusicPlaying) {
-      backgroundMusic.pause();
-    } else if (!document.hidden && isMusicPlaying) {
-      backgroundMusic.play().catch(() => {});
+  // Music toggle functionality
+  musicButton.addEventListener('click', async () => {
+    try {
+      if (isMusicPlaying) {
+        backgroundMusic.pause();
+        musicButton.innerHTML = '🎵';
+        musicButton.style.opacity = '0.5';
+        isMusicPlaying = false;
+      } else {
+        await backgroundMusic.play();
+        musicButton.innerHTML = '🔊';
+        musicButton.style.opacity = '1';
+        isMusicPlaying = true;
+      }
+    } catch (error) {
+      console.log('Music play failed:', error);
     }
   });
   
-  // Multiple attempts to start music automatically
-  const attemptAutoStart = () => {
-    if (!isMusicPlaying) {
-      startMusic();
+  // Handle page visibility changes
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden && isMusicPlaying) {
+      backgroundMusic.play().catch(() => {});
+    } else if (!document.hidden && isMusicPlaying) {
+      backgroundMusic.pause();
     }
-  };
+  });
   
-  // Try to start immediately
-  attemptAutoStart();
+  // Start music when ready
+  backgroundMusic.addEventListener('canplaythrough', startMusic);
   
-  // Try when audio is ready
-  backgroundMusic.addEventListener('canplaythrough', attemptAutoStart);
-  backgroundMusic.addEventListener('loadeddata', attemptAutoStart);
-  
-  // Multiple retry attempts after page load
-  setTimeout(attemptAutoStart, 100);
-  setTimeout(attemptAutoStart, 500);
-  setTimeout(attemptAutoStart, 1000);
-  setTimeout(attemptAutoStart, 2000);
-  
-  // Try to start on any user interaction (as fallback)
-  const tryStartOnInteraction = () => {
-    if (!isMusicPlaying) {
-      attemptAutoStart();
-    }
-  };
-  
-  // Listen for any user interaction to start music
-  document.addEventListener('click', tryStartOnInteraction, { once: true });
-  document.addEventListener('touchstart', tryStartOnInteraction, { once: true });
-  document.addEventListener('keydown', tryStartOnInteraction, { once: true });
-  document.addEventListener('mousemove', tryStartOnInteraction, { once: true });
-  document.addEventListener('scroll', tryStartOnInteraction, { once: true });
-  
-  // Additional events to trigger music
-  window.addEventListener('load', attemptAutoStart);
-  window.addEventListener('focus', attemptAutoStart);
-  document.addEventListener('focus', attemptAutoStart);
+  // Also try to start immediately (for browsers that allow it)
+  startMusic();
 }
 
-// Initialize music after page loads
-window.addEventListener('load', initBackgroundMusic);
+// Initialize music when page loads
 document.addEventListener('DOMContentLoaded', initBackgroundMusic);
-
-// Also try to initialize immediately for faster loading
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initBackgroundMusic);
-} else {
-  initBackgroundMusic();
-}
 
 // Smooth scroll from chevron
 document.getElementById('scrollDown')?.addEventListener('click', () => {

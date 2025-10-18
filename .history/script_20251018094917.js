@@ -7,7 +7,7 @@ function initBackgroundMusic() {
   backgroundMusic = new Audio();
   backgroundMusic.src = 'audio/audio1.mp3';
   backgroundMusic.loop = true;
-  backgroundMusic.volume = 0.3; // 30% volume
+  backgroundMusic.volume = 0.5; // 30% volume
   backgroundMusic.preload = 'auto';
   
   // Try to start music automatically

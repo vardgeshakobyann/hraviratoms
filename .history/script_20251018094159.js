@@ -10,6 +10,28 @@ function initBackgroundMusic() {
   backgroundMusic.volume = 0.3; // 30% volume
   backgroundMusic.preload = 'auto';
   
+  // Create music control button
+  const musicButton = document.createElement('button');
+  musicButton.id = 'musicToggle';
+  musicButton.innerHTML = '🔊';
+  musicButton.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+  `;
+  
+  document.body.appendChild(musicButton);
+  
   // Try to start music automatically
   const startMusic = async () => {
     try {

@@ -10,6 +10,28 @@ function initBackgroundMusic() {
   backgroundMusic.volume = 0.3; // 30% volume
   backgroundMusic.preload = 'auto';
   
+  // Create music control button
+  const musicButton = document.createElement('button');
+  musicButton.id = 'musicToggle';
+  musicButton.innerHTML = 'Music';
+  musicButton.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+  `;
+  
+  document.body.appendChild(musicButton);
+  
   // Try to start music automatically
   const startMusic = async () => {
     try {
@@ -18,10 +40,35 @@ function initBackgroundMusic() {
       backgroundMusic.muted = false;
       await backgroundMusic.play();
       isMusicPlaying = true;
+      musicButton.innerHTML = '🔊';
+      musicButton.style.opacity = '1';
     } catch (error) {
       isMusicPlaying = false;
+      musicButton.innerHTML = '🎵';
+      musicButton.style.opacity = '0.5';
     }
   };
+  
+  // Music toggle functionality
+  musicButton.addEventListener('click', async () => {
+    try {
+      if (isMusicPlaying) {
+        backgroundMusic.pause();
+        musicButton.innerHTML = '🎵';
+        musicButton.style.opacity = '0.5';
+        isMusicPlaying = false;
+      } else {
+        backgroundMusic.volume = 0.5;
+        backgroundMusic.currentTime = 48;
+        await backgroundMusic.play();
+        musicButton.innerHTML = '🔊';
+        musicButton.style.opacity = '1';
+        isMusicPlaying = true;
+      }
+    } catch (error) {
+      console.log('Music toggle failed:', error);
+    }
+  });
   
   // Handle page visibility changes
   document.addEventListener('visibilitychange', () => {

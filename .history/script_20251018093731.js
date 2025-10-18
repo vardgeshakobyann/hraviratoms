@@ -13,7 +13,7 @@ function initBackgroundMusic() {
   // Try to start music automatically
   const startMusic = async () => {
     try {
-      backgroundMusic.volume = 0.5;
+      backgroundMusic.volume = 0.3;
       backgroundMusic.currentTime = 48;
       backgroundMusic.muted = false;
       await backgroundMusic.play();
@@ -75,13 +75,6 @@ function initBackgroundMusic() {
 // Initialize music after page loads
 window.addEventListener('load', initBackgroundMusic);
 document.addEventListener('DOMContentLoaded', initBackgroundMusic);
-
-// Also try to initialize immediately for faster loading
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initBackgroundMusic);
-} else {
-  initBackgroundMusic();
-}
 
 // Smooth scroll from chevron
 document.getElementById('scrollDown')?.addEventListener('click', () => {

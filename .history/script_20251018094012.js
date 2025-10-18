@@ -20,6 +20,7 @@ function initBackgroundMusic() {
       isMusicPlaying = true;
     } catch (error) {
       isMusicPlaying = false;
+      await backgroundMusic.play();
     }
   };
   

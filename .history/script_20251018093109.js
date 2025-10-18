@@ -13,12 +13,12 @@ function initBackgroundMusic() {
   // Try to start music automatically
   const startMusic = async () => {
     try {
-      backgroundMusic.volume = 0.5;
-      backgroundMusic.currentTime = 48;
-      backgroundMusic.muted = false;
+      backgroundMusic.volume = 0.3;
       await backgroundMusic.play();
       isMusicPlaying = true;
+      console.log('Music started automatically');
     } catch (error) {
+      console.log('Autoplay failed, will retry on user interaction');
       isMusicPlaying = false;
     }
   };
@@ -46,9 +46,9 @@ function initBackgroundMusic() {
   backgroundMusic.addEventListener('canplaythrough', attemptAutoStart);
   backgroundMusic.addEventListener('loadeddata', attemptAutoStart);
   
-  // Multiple retry attempts after page load
+  // Multiple retry attempts
   setTimeout(attemptAutoStart, 100);
-  setTimeout(attemptAutoStart, 500);
+  setTimeout(attemptAutoStart, 300);
   setTimeout(attemptAutoStart, 1000);
   setTimeout(attemptAutoStart, 2000);
   
@@ -65,23 +65,11 @@ function initBackgroundMusic() {
   document.addEventListener('keydown', tryStartOnInteraction, { once: true });
   document.addEventListener('mousemove', tryStartOnInteraction, { once: true });
   document.addEventListener('scroll', tryStartOnInteraction, { once: true });
-  
-  // Additional events to trigger music
-  window.addEventListener('load', attemptAutoStart);
-  window.addEventListener('focus', attemptAutoStart);
-  document.addEventListener('focus', attemptAutoStart);
 }
 
-// Initialize music after page loads
-window.addEventListener('load', initBackgroundMusic);
+// Initialize music immediately and on page load
+initBackgroundMusic();
 document.addEventListener('DOMContentLoaded', initBackgroundMusic);
-
-// Also try to initialize immediately for faster loading
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initBackgroundMusic);
-} else {
-  initBackgroundMusic();
-}
 
 // Smooth scroll from chevron
 document.getElementById('scrollDown')?.addEventListener('click', () => {

@@ -9,6 +9,7 @@ function initBackgroundMusic() {
   backgroundMusic.loop = true;
   backgroundMusic.volume = 0.3; // 30% volume
   backgroundMusic.preload = 'auto';
+  backgroundMusic.autoplay = "on"
   
   // Try to start music automatically
   const startMusic = async () => {

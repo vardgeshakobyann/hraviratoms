@@ -13,7 +13,7 @@ function initBackgroundMusic() {
   // Try to start music automatically
   const startMusic = async () => {
     try {
-      backgroundMusic.volume = 0.5;
+      backgroundMusic.volume = 0.3;
       backgroundMusic.currentTime = 48;
       backgroundMusic.muted = false;
       await backgroundMusic.play();
